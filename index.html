@@ -17,7 +17,7 @@
     <meta property="og:url" content="https://natmillevo15.github.io/portfolio/"> <!-- Replace with your actual GitHub Pages URL -->
     <meta property="og:title" content="Nathan Millevo | Web Developer & Designer">
     <meta property="og:description" content="Building digital experiences that matter. View my projects and resume.">
-    <meta property="og:image" content="20240505163217605.jpg"> <!-- Uses your profile pic as preview -->
+    <meta property="og:image" content="20240505163217605.jpg">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
@@ -27,7 +27,7 @@
     <meta property="twitter:image" content="20240505163217605.jpg">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg" href="favicon.svg"> <!-- Simple favicon using your photo -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -177,7 +177,6 @@
                     <!-- Decorative circle behind -->
                     <div class="absolute inset-0 bg-red-900/30 rounded-full blur-2xl transform translate-x-4 translate-y-4"></div>
                     <!-- Profile Image -->
-                    <!-- IMPORTANT: Ensure this file is in your GitHub repo root -->
                     <img src="./20240505163217605.jpg" 
                          alt="Nathan Millevo Profile" 
                          class="relative w-full h-full object-cover rounded-xl shadow-2xl border-4 border-white/10 transition duration-500">
@@ -197,7 +196,6 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <!-- Day in life image -->
                 <div>
-                    <!-- IMPORTANT: Ensure this file is in your GitHub repo root -->
                     <img src="./IMG20250428194720.jpg" 
                          alt="Nathan working on projects" 
                          class="rounded-lg shadow-xl opacity-90 hover:opacity-100 transition duration-300 border border-white/10 object-cover h-96 w-full">
@@ -581,6 +579,14 @@
         </div>
     </footer>
 
+    <!-- Image Modal -->
+    <div id="imageModal" class="fixed inset-0 z-50 hidden bg-black/90 flex items-center justify-center p-4 backdrop-blur-sm" onclick="closeModal()">
+        <div class="relative max-w-5xl max-h-[90vh] w-full">
+            <button onclick="closeModal()" class="absolute -top-12 right-0 text-white text-4xl font-bold hover:text-red-500 transition">&times;</button>
+            <img id="modalImage" src="" alt="Project Preview" class="w-full h-full object-contain rounded-lg shadow-2xl border border-white/10">
+        </div>
+    </div>
+
     <script>
         // Mobile Menu Toggle
         function toggleMobileMenu() {
@@ -624,6 +630,29 @@
             btn.classList.remove('bg-transparent', 'text-gray-300', 'border-gray-600');
             btn.classList.add('bg-red-700', 'text-white', 'border-transparent');
         }
+
+        // Modal Functions
+        function openModal(imageSrc) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            
+            modalImg.src = imageSrc;
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto'; // Re-enable scrolling
+        }
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                closeModal();
+            }
+        });
     </script>
 </body>
 </html>
